@@ -40,7 +40,7 @@ class Car extends Thread {
         }
 
         //Parken
-        parkade.parke(this);
+        parkade.park(this);
         if (parking == 1) {
             System.out.println("Parking besetzt: " + this + " parkt für " + parkingtime + " Minuten.");
             try {

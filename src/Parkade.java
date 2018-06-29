@@ -15,12 +15,13 @@ class Parkade {
     synchronized public void enter(Car car) {
         while (entrances <= 0 || parkingSpaces <= 0) {
             if (entrances <= 0)
-                System.out.println("Entrances voll: " + car + " muss warten.");
+                System.out.println("Einfahrten voll: " + car + " muss warten.");
             else
                 System.out.println("Parkhaus voll: " + car + " muss an der Einfahrt warten, bis ein Parkplatz frei wird.");
             try {
                 wait();
             } catch (Exception e) {
+                throw new Error(e);
             }
         }
         entrances--;
@@ -35,7 +36,7 @@ class Parkade {
         notifyAll();
     }
 
-    synchronized public void parke(Car car) {
+    synchronized public void park(Car car) {
         entrances++;
         notifyAll();
     }
@@ -46,6 +47,7 @@ class Parkade {
             try {
                 wait();
             } catch (Exception e) {
+                throw new Error(e);
             }
         }
         gateways--;
